@@ -15,6 +15,8 @@
     main.cpp中执行test_main(0, 0); 
     IAD多UVC设备
     main.cpp中执行test_iad_main(0,0);
+    同VIDPID多UVC设备
+    main.cpp中执行test_samevidpid_main(0,0);
 
     修改以下的PID VID
 
