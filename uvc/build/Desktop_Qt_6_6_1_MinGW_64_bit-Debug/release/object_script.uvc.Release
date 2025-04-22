@@ -1,5 +1,6 @@
 release/test.o
 release/test_iad.o
+release/test_samevidpid.o
 release/log.o
 release/main.o
 release/mainwindow.o

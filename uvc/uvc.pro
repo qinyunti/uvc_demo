@@ -11,6 +11,7 @@ CONFIG += c++17 config console
 SOURCES += \
     test.c \
     test_iad.c \
+    test_samevidpid.c \
     log.c \
     main.cpp \
     mainwindow.cpp \

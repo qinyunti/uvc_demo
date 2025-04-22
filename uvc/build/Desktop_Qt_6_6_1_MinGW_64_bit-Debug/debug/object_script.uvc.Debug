@@ -1,5 +1,6 @@
 debug/test.o
 debug/test_iad.o
+debug/test_samevidpid.o
 debug/log.o
 debug/main.o
 debug/mainwindow.o
