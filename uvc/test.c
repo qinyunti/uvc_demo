@@ -1,6 +1,21 @@
 #include <stdio.h>
 #include "libuvc/libuvc.h"
+
+#ifdef _WIN32
 #include <windows.h>
+static void delay_ms(int ms)
+{
+    Sleep(ms);
+}
+#elif __linux__
+#include <unistd.h>
+static void delay_ms(int ms)
+{
+    usleep(ms*1000);
+}
+#else
+#error "Unknown compiler"
+#endif
 
 static void cb(uvc_frame_t *frame, void *ptr) {
     uvc_frame_t *bgr;
@@ -76,7 +91,7 @@ int test_main(int argc, char **argv) {
                     uvc_perror(res, "start_streaming");
                 } else {
                     printf("Streaming for 10 seconds...");
-                    Sleep(10000);
+                    delay_ms(10000);
                     uvc_stop_streaming(devh);
                     printf("Done streaming.");
                 }

@@ -1,6 +1,21 @@
 #include <stdio.h>
 #include "libuvc/libuvc.h"
+
+#ifdef _WIN32
 #include <windows.h>
+static void delay_ms(int ms)
+{
+    Sleep(ms);
+}
+#elif __linux__
+#include <unistd.h>
+static void delay_ms(int ms)
+{
+    usleep(ms*1000);
+}
+#else
+#error "Unknown compiler"
+#endif
 
 static void cb(uvc_frame_t *frame, void *ptr) {
     uvc_frame_t *bgr;
@@ -60,7 +75,7 @@ int test_iad_main(int argc, char **argv) {
         } else {
             printf("Device opened %d\r\n",dev_num);
 
-            for(int i=0; i<dev_num; i++)
+            for(long i=0; i<dev_num; i++)
             {
                 uvc_print_diag(devh[i], stderr);
 
@@ -83,7 +98,7 @@ int test_iad_main(int argc, char **argv) {
                 }
             }
 
-            Sleep(10000);
+            delay_ms(10000);
 
             for(int i=0; i<dev_num; i++)
             {
