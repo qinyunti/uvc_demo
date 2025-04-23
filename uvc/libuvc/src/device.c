@@ -534,9 +534,9 @@ static uvc_error_t uvc_open_internal(
      }
  done:
      *n = dev_num;
-     UVC_EXIT(ret);
+     //UVC_EXIT(ret);  /* 最后一笔搜寻失败,ret返回错误,但是此时已经搜索成功了设备则要返回成功0 */
 
-     return ret;
+     return 0;
 
  fail:
      if ( internal_devh->info ) {
